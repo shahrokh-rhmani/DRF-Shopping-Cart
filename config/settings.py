@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
+    # my app
+    'shopping_cart.apps.ShoppingCartConfig',
 
     # 3rd party
     'rest_framework',
