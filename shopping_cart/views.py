@@ -9,8 +9,8 @@ class CartProductView(APIView):
         serializer = CartProductSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return response({"status": "success", "data": serializer.data},
+            return Response({"status": "success", "data": serializer.data},
                 status=status.HTTP_200_OK)
         else:
-            return response({"status": "error", "data": serializer.errors},
+            return Response({"status": "error", "data": serializer.errors},
                 status=status.HTTP_400_BAD_REQUEST)
