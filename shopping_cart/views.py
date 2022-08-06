@@ -18,7 +18,14 @@ class CartProductView(APIView):
                 status=status.HTTP_400_BAD_REQUEST)
 
     # GET
-    def get(self, request):
+    def get(self, request, id=None):
+        if id:
+            item = CardProduct.objects.get(id=id)
+            serializer = CartProductSerializer(item)
+            return Response({"status":"success", "data": serializer.data},
+                status=status.HTTP_200_OK)
+
+
         items = CardProduct.objects.all()
         serializer = CartProductSerializer(items, many=True)
         return Response({"status":"success", "data": serializer.data},
