@@ -19,14 +19,24 @@ class CartProductView(APIView):
 
     # GET
     def get(self, request, id=None):
+        # get id
         if id:
             item = CardProduct.objects.get(id=id)
             serializer = CartProductSerializer(item)
             return Response({"status":"success", "data": serializer.data},
                 status=status.HTTP_200_OK)
 
-
+        # get all
         items = CardProduct.objects.all()
         serializer = CartProductSerializer(items, many=True)
         return Response({"status":"success", "data": serializer.data},
                 status=status.HTTP_200_OK)
+    # patch
+    def patch(self, request, id=None):
+        item = CardProduct.objects.get(id=id)
+        serializer = CartProductSerializer(item, data=request.data)
+        if serializer.is_vlid():
+            serializer.save()
+            return Response({"status": "success", "data": serializer.data})
+        else:
+            return Response({"status": "error", "data": serializer.errors})
