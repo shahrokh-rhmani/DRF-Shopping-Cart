@@ -35,7 +35,7 @@ class CartProductView(APIView):
     def patch(self, request, id=None):
         item = CardProduct.objects.get(id=id)
         serializer = CartProductSerializer(item, data=request.data)
-        if serializer.is_vlid():
+        if serializer.is_valid():
             serializer.save()
             return Response({"status": "success", "data": serializer.data})
         else:
