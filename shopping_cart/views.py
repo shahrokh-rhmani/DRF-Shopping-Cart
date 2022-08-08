@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import CardProduct
 from .serializers import CartProductSerializer
+from django.shortcuts import get_object_or_404
 
 
 class CartProductView(APIView):
@@ -40,3 +41,9 @@ class CartProductView(APIView):
             return Response({"status": "success", "data": serializer.data})
         else:
             return Response({"status": "error", "data": serializer.errors})
+
+    # delete
+    def delete(self, request, id=None):
+        item = get_object_or_404(CardProduct, pk=id)
+        item.delete()
+        return Response({"status": "success", "data": "Item Deleted"})
