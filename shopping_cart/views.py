@@ -22,7 +22,7 @@ class CartProductView(APIView):
     def get(self, request, id=None):
         # get id
         if id:
-            item = CardProduct.objects.get(id=id)
+            item = get_object_or_404(CardProduct, pk=id)
             serializer = CartProductSerializer(item)
             return Response({"status":"success", "data": serializer.data},
                 status=status.HTTP_200_OK)
