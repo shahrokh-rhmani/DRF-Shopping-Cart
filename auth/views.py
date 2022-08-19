@@ -1,7 +1,7 @@
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serialiazers import LoginSerializer
+from .serializers import LoginSerializer
 
 
 class LoginView(APIView):
@@ -9,7 +9,7 @@ class LoginView(APIView):
 
     def post(self, request, format=None):
         serializer = LoginSerializer(data=request.data,
-                context={'request': self.request})
+            context={'request': self.request})
 
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']

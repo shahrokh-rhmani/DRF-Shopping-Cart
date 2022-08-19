@@ -20,7 +20,7 @@ class LoginSerializer(serializers.Serializer):
         password = attrs.get('password')
 
         if username and password:
-            user = authenticate(request=self.context.get('request')
+            user = authenticate(request=self.context.get('request'),
                     username=username,
                     password=password)
 
