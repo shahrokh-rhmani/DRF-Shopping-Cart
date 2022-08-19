@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # my app
     'shopping_cart.apps.ShoppingCartConfig',
 
+
     # 3rd party
     'rest_framework',
 ]
