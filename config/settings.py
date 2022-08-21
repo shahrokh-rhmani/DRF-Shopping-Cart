@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # my app
     'shopping_cart.apps.ShoppingCartConfig',
+    'account.apps.AccountConfig',
+
 
 
     # 3rd party
