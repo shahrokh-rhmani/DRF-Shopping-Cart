@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import LoginSerializer, UserProfileSerializer
 from rest_framework import generics
+from django.http import HttpResponseRedirect
 
 
 
@@ -19,7 +20,7 @@ class LoginView(APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
         login(request, user)
-        return Response(None, status=status.HTTP_202_ACCEPTED)
+        return HttpResponseRedirect(redirect_to='/profile/')
 
 
 
