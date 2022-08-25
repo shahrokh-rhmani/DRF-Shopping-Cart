@@ -24,7 +24,7 @@ class LoginView(APIView):
 
 
 class ProfileView(generics.RetrieveAPIView):
-    serializer_class = serializers.UserSerializer
+    serializer_class = UserProfileSerializer
 
     def get_object(self):
         return self.request.user
