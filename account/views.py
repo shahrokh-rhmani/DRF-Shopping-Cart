@@ -4,7 +4,8 @@ from rest_framework import status
 from rest_framework import permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .serializers import LoginSerializer
+from .serializers import LoginSerializer, UserProfileSerializer
+from rest_framework import generics
 
 
 
@@ -19,3 +20,11 @@ class LoginView(APIView):
         user = serializer.validated_data['user']
         login(request, user)
         return Response(None, status=status.HTTP_202_ACCEPTED)
+
+
+
+class ProfileView(generics.RetrieveAPIView):
+    serializer_class = serializers.UserSerializer
+
+    def get_object(self):
+        return self.request.user
